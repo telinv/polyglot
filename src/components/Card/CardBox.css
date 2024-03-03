@@ -1,0 +1,11 @@
+.card{
+    height: 200px;
+    width: 200px;
+    padding: 2rem;
+    margin-top: 3%;
+    background-color: rgb(252, 195, 145);
+}
+
+.card-body{
+    color: brown;
+}

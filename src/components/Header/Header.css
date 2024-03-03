@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Quicksand:wght@300&display=swap');
+.navContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 228, 129);
+    color: rgb(254, 145, 1);
+    width: 100%;
+    font-family: 'Comfortaa' , Georgia, Times, serif;
+    padding: 2rem;
+}
+img{
+    height: 100px;
+}
+ul{
+    display: flex;
+    list-style-type: none; 
+}
+
+li{
+    margin-right: 5rem;
+    cursor: pointer;
+}
+
+li:active{
+    color:brown;
+}
