@@ -1,0 +1,1 @@
+const englishWord = document.querySelector

@@ -1,10 +1,11 @@
-import React from 'react'
-import CardBox from './CardBox.jsx'
-import "./CardContainer.css"
+import React from 'react';
+import CardBox from './CardBox.jsx';
+import styles from "./CardContainer.module.css";
+// import "../scripts/wordsApi.js"
 
-function CardList() {
+function CardContainer() {
     return (
-        <div className="main-container">
+        <div className={styles.mainContainer}>
         <React.Fragment>
             <CardBox
                 word="orange"
@@ -31,4 +32,4 @@ function CardList() {
     );
 }
 
-export default CardList;
+export default CardContainer;

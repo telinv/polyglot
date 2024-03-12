@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Madimi+One&family=Quicksand:wght@200&display=swap');
+
+.vocabularyTable{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+table{
+    border: 2px solid rgb(246, 155, 59);
+    font-family: 'Comfortaa' , Georgia, Times, serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    width: 80%;
+
+}
+caption{
+font-family: "Madimi One", 'Times New Roman', serif;
+ font-size: 23pt;
+ color: rgb(240, 152, 21) !important;
+
+ padding: 10px;
+ font-weight: bold;
+ display: flex;
+ justify-content: center;
+}
+.tableHeader{
+    color: brown;
+    background-color: rgb(246, 155, 59);
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+  th,
+  td,
+  tr {
+    border: 2px solid rgb(246, 155, 59) !important;
+    padding: 12px 10px;
+  }
+

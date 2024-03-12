@@ -1,15 +1,15 @@
 import React from 'react'
-import "./CardBox.css"
+import styles from "./CardBox.module.css"
 
 class CardBox extends React.Component {
     render() {
 				const {word, transcription, translation} = this.props;
         return (
-            <div className="card">
-                <div className="card-body">
-                    <h4 className="card-word">{word}</h4>
-                    <p className="card-transcription">{transcription}</p>
-                    <p className="card-translation">{translation}</p>
+            <div className={styles.card}>
+                <div className={styles.cardBody}>
+                    <h4 className={styles.cardWord}>{word}</h4>
+                    <p className={styles.cardTranscription}>{transcription}</p>
+                    <p className={styles.cardTranslation}>{translation}</p>
                 </div>
             </div>
         );

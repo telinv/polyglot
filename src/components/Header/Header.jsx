@@ -1,6 +1,6 @@
 import React from 'react';
 import emblem from "./emblem.png";
-import './Header.css';
+import styles from'./Header.module.css';
 // import Languages from './Languages/Languages';
 
 
@@ -10,13 +10,14 @@ import './Header.css';
 function Header() {
   return (
     <div >
-        <nav className='navContainer'>
+        <nav  className={styles.navContainer}>
         <img src={emblem} alt="emblem" />
           <ul>
             <li>Язык</li>
             {/* <li><Languages/></li> */}
             <li>Блиц опрос</li>
             <li>Самообучение</li>
+            <li>Мои карточки</li>
           </ul>
         </nav>
         </div>

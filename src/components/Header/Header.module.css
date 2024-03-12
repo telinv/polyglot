@@ -3,9 +3,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(255, 228, 129);
+    background-image: url('./Line2.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     color: rgb(254, 145, 1);
     width: 100%;
+    font-size: 15pt;
     font-family: 'Comfortaa' , Georgia, Times, serif;
     padding: 2rem;
 }

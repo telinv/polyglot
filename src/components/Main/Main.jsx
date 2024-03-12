@@ -1,10 +1,10 @@
 import React from 'react'
 
-import CardList from '../Card/CardContainer'
+import CardContainer from '../Card/CardContainer'
 
 function Main() {
   return (
-    <CardList/>
+    <CardContainer/>
   )
 }
 
