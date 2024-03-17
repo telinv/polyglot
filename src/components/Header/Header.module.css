@@ -6,7 +6,7 @@
     background-image: url('./Line2.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    color: rgb(254, 145, 1);
+    /* color: rgb(254, 145, 1); */
     width: 100%;
     font-size: 15pt;
     font-family: 'Comfortaa' , Georgia, Times, serif;
@@ -27,4 +27,8 @@ li{
 
 li:active{
     color:brown;
+}
+
+.Link{
+    color: rgb(254, 145, 1);
 }

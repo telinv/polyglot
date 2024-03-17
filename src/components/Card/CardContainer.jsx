@@ -1,10 +1,12 @@
 import React from 'react';
 import CardBox from './CardBox.jsx';
 import styles from "./CardContainer.module.css";
+import picture from './yellow.png';
 // import "../scripts/wordsApi.js"
 
 function CardContainer() {
     return (
+        <div>
         <div className={styles.mainContainer}>
         <React.Fragment>
             <CardBox
@@ -28,6 +30,10 @@ function CardContainer() {
                 translation="кошка"
             />
         </React.Fragment>
+
+        </div>
+
+        <img src={picture} alt="students" className={styles.bottomImg}/>
         </div>
     );
 }

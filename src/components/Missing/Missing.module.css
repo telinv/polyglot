@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Quicksand:wght@300&display=swap');
+
+.notFoundPage{
+    margin-top: 1%;
+    border-radius: 25px;
+} 
+.notFoundheader1{
+    font-family: "Madimi One", 'Times New Roman', serif;
+    font-size: 60pt;
+    color:brown;
+    margin-bottom: 1%;
+}
+
+.notFoundheader2{
+    font-family: 'Comfortaa' , Georgia, Times, serif;
+    color: rgb(254, 145, 1);
+    margin-bottom: 2%;
+}
+.notFoundPicture{
+    height: 220px;
+}

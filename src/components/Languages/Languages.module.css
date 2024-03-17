@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Quicksand:wght@300&display=swap');
+
+.languagesList{
+    display: flex;
+    flex-direction: column;
+    color: rgb(254, 145, 1);
+    font-family: 'Comfortaa' , Georgia, Times, serif;
+}
+/* .Button{
+    background-color: brown;
+    color: rgb(254, 145, 1);
+    font-family: 'Comfortaa' , Georgia, Times, serif;
+} */
+.MenuItem{
+    color: rgb(240, 152, 21);
+    font-family: 'Comfortaa' , Georgia, Times, serif;
+}

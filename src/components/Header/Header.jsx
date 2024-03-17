@@ -1,9 +1,8 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import emblem from "./emblem.png";
 import styles from'./Header.module.css';
-// import Languages from './Languages/Languages';
-
-
+import Languages from '../Languages/Languages';
 
 
 
@@ -13,11 +12,14 @@ function Header() {
         <nav  className={styles.navContainer}>
         <img src={emblem} alt="emblem" />
           <ul>
-            <li>Язык</li>
-            {/* <li><Languages/></li> */}
-            <li>Блиц опрос</li>
-            <li>Самообучение</li>
-            <li>Мои карточки</li>
+            <li><Languages/></li>
+            <li>
+            <Link to = "/survey">Блиц опрос</Link>
+            </li>
+            <li><Link to = "/vocabulary">Словарь</Link></li>
+            <li>
+            <Link to = "/cards">Мои карточки</Link>
+            </li>
           </ul>
         </nav>
         </div>
