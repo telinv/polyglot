@@ -10,7 +10,7 @@ function Header() {
   return (
     <div >
         <nav  className={styles.navContainer}>
-        <img src={emblem} alt="emblem" />
+        <Link to="/all"><img src={emblem} alt="emblem" /></Link>
           <ul>
             <li><Languages/></li>
             <li>

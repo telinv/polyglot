@@ -11,6 +11,7 @@ function Container() {
     <div className={styles.structure}>
   <Header/>
   <Routes>
+    <Route path='/all' element={<Container/>}></Route>
     <Route path='/cards' element={<Main/>}></Route>
     <Route path='/vocabulary' element={<Table/>}>
     </Route >

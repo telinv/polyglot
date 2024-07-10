@@ -1,10 +1,11 @@
 import React from 'react'
-
-import CardContainer from '../Card/CardContainer'
+import { CardBox } from '../Card/CardBox'
+// import CardContainer from '../Card/CardContainer'
 
 function Main() {
   return (
-    <CardContainer/>
+    <CardBox/>
+    // <CardContainer/>
   )
 }
 
