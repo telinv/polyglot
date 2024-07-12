@@ -7,13 +7,14 @@ import Table from '../Table/Table.jsx';
 import Missing from '../Missing/Missing.jsx';
 
 function Container() {
+  let cards = [];
   return (
     <div className={styles.structure}>
   <Header/>
   <Routes>
     <Route path='/all' element={<Container/>}></Route>
     <Route path='/cards' element={<Main/>}></Route>
-    <Route path='/vocabulary' element={<Table/>}>
+    <Route path='/vocabulary' element={<Table cards={cards}/>}>
     </Route >
     <Route path='*' element={<Missing/>}></Route>
   </Routes>
