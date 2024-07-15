@@ -1,8 +1,10 @@
-import React , {useState} from 'react';
+import React , {useEffect, useState} from 'react';
 import styles from './Table.module.css'
 
 const Table = ({cards}) => {
+  // const [isSelected, setIsSelected] = useState(false)
   const [newWord,setNewWord] = useState({
+    id: null,
     word: '',
     transcription: '',
     translation: ''
@@ -12,19 +14,33 @@ const Table = ({cards}) => {
       cards.push(newWord);
       console.log(cards);
       setNewWord({
-        word: '',
-        transcription: '',
-        translation: ''
-      });
+      word: '',
+      transcription: '',
+      translation: ''
+ })}
 
-  }
    const handleChangeAdd = (event) => {
+    const newId = cards.reduce((max,card)=>Math.max(max,card.id),0 )+1
      const { name, value } = event.target;
      setNewWord((prevNewWord) => ({
        ...prevNewWord,
+       id: newId,
       [name]: value
     }));
    };
+    useEffect(()=> {}, [cards]);
+
+    // const handleEdit = () => {
+
+    // }
+
+    const deleteWord = (id) => {
+      // const updatedArray = cards.filter((card) => card.id)
+      console.log(id, 1)
+    }
+
+
+
   return (
     <div className={styles.vocabularyTable}>
       <caption>VOCABULARY</caption>
@@ -39,7 +55,7 @@ const Table = ({cards}) => {
             </thead>
             <tbody>
               {cards.map((card)=>(
-                <TableRow rowData={card} key={card.id} cards={cards}/>
+                <TableRow rowData={card} key={card.id} cards={cards} deleteWord={deleteWord}/>
                  ))} 
              <tr className={styles.tableInput}>
                      <th><input type="text" name="word" value={newWord.word} onChange={handleChangeAdd} placeholder='Слово'/></th>
@@ -52,13 +68,14 @@ const Table = ({cards}) => {
      </div>
    );
  };
-  const TableRow = ({rowData}) => {
+  const TableRow = ({rowData, deleteWord}) => {
     return (
       <tr>
       <td>{rowData.word}</td>
       <td>{rowData.transcription}</td>
       <td>{rowData.translation}</td>
-      <td>Редактировать</td>
+      <button>Edit</button>
+      <button onClick={()=>{deleteWord(rowData)}}>Delite</button>
     </tr>
   );
 };
