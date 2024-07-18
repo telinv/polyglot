@@ -53,7 +53,7 @@ const Table = ({ initialCards = [] }) => {
         </thead>
         <tbody>
           {cards.map((card) => (
-            <TableRow rowData={card} key={card.id} deleteWord={deleteWord} />
+            <TableRow rowData={card} key={card.id} deleteWord={deleteWord} setCards={setCards} cards={cards} />
           ))}
           <tr className={styles.tableInput}>
             <th>
@@ -93,14 +93,48 @@ const Table = ({ initialCards = [] }) => {
   );
 };
 
-const TableRow = ({ rowData, deleteWord }) => {
-  return (
+const TableRow = ({ rowData, deleteWord, setCards, cards }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editWord, setEditWord] = useState(rowData);
+
+  const handleEditChange = (event) => {
+    const { name, value } = event.target;
+    setEditWord((prevEditWord) => ({
+      ...prevEditWord,
+      [name]: value
+    }));
+  };
+
+  const handleEditSave = () => {
+    const updatedCards = cards.map((card) => 
+      card.id === editWord.id ? editWord : card
+    );
+    setCards(updatedCards);
+    setIsEditing(false);
+  };
+
+  return isEditing ? (
+    <tr>
+      <td>
+        <input type="text" name="word" value={editWord.word} onChange={handleEditChange} />
+      </td>
+      <td>
+        <input type="text" name="transcription" value={editWord.transcription} onChange={handleEditChange} />
+      </td>
+      <td>
+        <input type="text" name="translation" value={editWord.translation} onChange={handleEditChange} />
+      </td>
+      <td>
+        <button onClick={handleEditSave}>Save</button>
+      </td>
+    </tr>
+  ) : (
     <tr>
       <td>{rowData.word}</td>
       <td>{rowData.transcription}</td>
       <td>{rowData.translation}</td>
       <td>
-        <button>Edit</button>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
         <button onClick={() => deleteWord(rowData.id)}>Delete</button>
       </td>
     </tr>
@@ -108,75 +142,3 @@ const TableRow = ({ rowData, deleteWord }) => {
 };
 
 export default Table;
-
-// const TableRow = ({rowData, cards}) =>{
-//   const {id, word , transcription , translation} = rowData;
-//   const [isSelected, setIsSelected] = useState(false);
-//   const [value , setValue] = useState ({
-//     id, 
-//     word, 
-//     transcription, 
-//     translation
-//   });
-
-
-// function handleClose(){
-//   setIsSelected(!isSelected);
-//   setValue({...rowData});
-// }
-
-// function handleSave () {
-//   setValue({...value});
-//   setIsSelected(!isSelected);
-//   console.log(value);
-//   cards.push(value);
-//   console.log(cards);
-// }
-
-// function handleChange(event){
-//   setValue((prevValue)=>{
-//     return {...prevValue, [event.target.name]: event.target.value};
-//   })
-// }
-
-// function handleEdit(){
-//   setIsSelected(!isSelected);
-// }
-
-// return isSelected ? (
-//   <tr>
-//   <th>
-//     <input type="text" 
-//   value={value.word}
-//   name={'word'}
-//   onChange={handleChange}/>
-//   </th>
-//   <td>
-//     <input type="text" 
-//   value={value.transcription}
-//   name={'transcription'}
-//   onChange={handleChange}/>
-//   </td>
-//   <td>
-//     <input type="text" 
-//   value={value.translation}
-//   name={'translation'}
-//   onChange={handleChange}/>
-//   </td>
-//   <button onClick={handleSave}>Save</button>
-//   <button onClick={handleClose}>Edit</button>
-//   </tr>
-// ): (
-//   <tr>
-//     <th>{value.word}</th>
-//     <td>{value.transcription}</td>
-//     <td>{value.translation}</td>
-//     <td>
-//       <button onClick={handleEdit}>Edit</button>
-//       <button>Delite</button>
-//     </td>
-//   </tr>
-// );
-// };
-
-
