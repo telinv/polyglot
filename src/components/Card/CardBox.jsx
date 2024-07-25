@@ -77,7 +77,7 @@ export const CardBox = ({ word, transcription, translation }) => {
         )}
         <div className='transcription'>{transcription}</div>
         <div className='translation'>{translation}</div>
-        <Table cards={cards} />;
+        <Table cards={cards} />
       </div>
     );
   };

@@ -1,114 +1,144 @@
-import React , {useState} from 'react';
-import styles from './Table.module.css'
+import React, { useEffect, useState } from 'react';
+import styles from './Table.module.css';
 
-const Table = ({cards}) => {
+const Table = ({ initialCards = [] }) => {
+  const [cards, setCards] = useState(initialCards);
+  const [newWord, setNewWord] = useState({
+    id: null,
+    word: '',
+    transcription: '',
+    translation: ''
+  });
+
+  const handleSaveAdd = () => {
+    const newId = cards.reduce((max, card) => Math.max(max, card.id), 0) + 1;
+    const newCard = { ...newWord, id: newId };
+    setCards([...cards, newCard]);
+    setNewWord({
+      id: null,
+      word: '',
+      transcription: '',
+      translation: ''
+    });
+  };
+
+  const handleChangeAdd = (event) => {
+    const { name, value } = event.target;
+    setNewWord((prevNewWord) => ({
+      ...prevNewWord,
+      [name]: value
+    }));
+  };
+
+  const deleteWord = (id) => {
+    const updatedArray = cards.filter((card) => card.id !== id);
+    setCards(updatedArray);
+  };
+
+  useEffect(() => {
+    console.log('новый массив:', cards);
+  }, [cards]);
+
   return (
     <div className={styles.vocabularyTable}>
       <caption>VOCABULARY</caption>
-        <table>
-            <thead>
-                <tr className={styles.tableHeader}>
-                    <th>Слово</th>
-                    <th>Транскрипция</th>
-                    <th>Перевод</th>
-                </tr>
-            </thead>
-
-                {cards.map((card)=>{
-                  return <TableRow rowData= {card} key={card.id} />;
-                })}
-            {/* <tr>
-      <th>facilitate</th>
-      <td>fə'siliteit </td>
-      <td>способствовать</td>
-    </tr>
-    <tr>
-      <th>	remuneration</th>
-      <td>ri,mju:nə'reiʃən</td>
-      <td>вознаграждение</td>
-    </tr>
-    <tr>
-      <th>ethnicity</th>
-      <td>eðnisitɪ</td>
-      <td>этническая </td>
-    </tr>
-    <tr>
-      <th>hereditary</th>
-      <td>hi'reditəri</td>
-      <td>наследственный</td>
-      </tr> */}
-        </table>
+      <table>
+        <thead>
+          <tr className={styles.tableHeader}>
+            <th>Слово</th>
+            <th>Транскрипция</th>
+            <th>Перевод</th>
+            <th>Редактировать</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cards.map((card) => (
+            <TableRow rowData={card} key={card.id} deleteWord={deleteWord} setCards={setCards} cards={cards} />
+          ))}
+          <tr className={styles.tableInput}>
+            <th>
+              <input
+                type="text"
+                name="word"
+                value={newWord.word}
+                onChange={handleChangeAdd}
+                placeholder="Слово"
+              />
+            </th>
+            <th>
+              <input
+                type="text"
+                name="transcription"
+                value={newWord.transcription}
+                onChange={handleChangeAdd}
+                placeholder="Транскрипция"
+              />
+            </th>
+            <th>
+              <input
+                type="text"
+                name="translation"
+                value={newWord.translation}
+                onChange={handleChangeAdd}
+                placeholder="Перевод"
+              />
+            </th>
+            <th>
+              <button onClick={handleSaveAdd}>Add</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
-  
+
+const TableRow = ({ rowData, deleteWord, setCards, cards }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editWord, setEditWord] = useState(rowData);
+
+  const handleEditChange = (event) => {
+    const { name, value } = event.target;
+    setEditWord((prevEditWord) => ({
+      ...prevEditWord,
+      [name]: value
+    }));
+  };
+
+  const handleEditSave = () => {
+    const updatedCards = cards.map((card) => 
+      card.id === editWord.id ? editWord : card
+    );
+    setCards(updatedCards);
+    setIsEditing(false);
+  };
+
+  return isEditing ? (
+    <tr>
+      <td>
+        <input type="text" name="word" value={editWord.word} onChange={handleEditChange} />
+      </td>
+      <td>
+        <input type="text" name="transcription" value={editWord.transcription} onChange={handleEditChange} />
+      </td>
+      <td>
+        <input type="text" name="translation" value={editWord.translation} onChange={handleEditChange} />
+      </td>
+      <td>
+        <button onClick={handleEditSave}>Save</button>
+      </td>
+    </tr>
+  ) : (
+    <tr>
+      <td>{rowData.word}</td>
+      <td>{rowData.transcription}</td>
+      <td>{rowData.translation}</td>
+      <td>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+        <button onClick={() => deleteWord(rowData.id)}>Delete</button>
+      </td>
+    </tr>
+  );
+};
 
 export default Table;
-
-
-const TableRow = ({rowData}) =>{
-  const {id, word , transcription , translation} = rowData;
-  const [isSelected, setIsSelected] = useState(false);
-  const [value , setValue] = useState ({
-    id, 
-    word, 
-    transcription, 
-    translation
-  });
-
-
-function handleClose(){
-  setIsSelected(!isSelected);
-  setValue({...rowData});
-}
-
-function handleSave () {
-  setValue({...value});
-  setIsSelected(!isSelected);
-}
-
-function handleChange(event){
-  setValue((prevValue)=>{
-    return {...prevValue, [event.target.name]: event.target.value};
-  })
-}
-
-function handleEdit(){
-  setIsSelected(!isSelected);
-}
-
-return isSelected ? (
-  <tr>
-  <th>
-    <input type="text" 
-  value={value.word}
-  name={'word'}
-  onChange={handleChange}/>
-  </th>
-  <td>
-    <input type="text" 
-  value={value.transcription}
-  name={'transcription'}
-  onChange={handleChange}/>
-  </td>
-  <td>
-    <input type="text" 
-  value={value.translation}
-  name={'translation'}
-  onChange={handleChange}/>
-  </td>
-  <button onClick={handleSave}>Save</button>
-  <button onClick={handleClose}>Edit</button>
-  </tr>
-): (
-  <tr>
-    <th>{value.word}</th>
-    <td>{value.transcription}</td>
-    <td>{value.translation}</td>
-    <td>
-      <button onClick={handleEdit}>Edit</button>
-      <button>Delite</button>
-    </td>
-  </tr>
-);
-};

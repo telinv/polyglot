@@ -38,3 +38,13 @@ font-family: "Madimi One", 'Times New Roman', serif;
     padding: 12px 10px;
   }
 
+  button{
+    color: brown;
+    background-color: rgb(246, 155, 59);
+    border: 2px solid rgb(205, 106, 0) ;
+  }
+  button:active{
+    color: rgb(246, 155, 59);
+    background-color: brown;
+    border: 2px solid rgb(205, 106, 0) ;
+  }
